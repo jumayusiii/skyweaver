@@ -1,0 +1,8 @@
+{
+  "skyweaver.configuration.title": "Skyweaver",
+  "skyweaver.configuration.section.skyweaver.client.toml": "Skyweaver Client Settings",
+  "skyweaver.configuration.section.skyweaver.client.toml.title": "Skyweaver",
+  "skyweaver.configuration.enabled": "Enable Custom Skies",
+  "skyweaver.configuration.skybox": "Skybox",
+  "skyweaver.configuration.respect_shader_packs": "Respect Shader Packs"
+}

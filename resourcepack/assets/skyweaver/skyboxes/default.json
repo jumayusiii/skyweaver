@@ -1,0 +1,15 @@
+{
+  "dimensions": [
+    "minecraft:overworld"
+  ],
+  "textures": {
+    "day": "skyweaver:textures/sky/day.png",
+    "sunset": "skyweaver:textures/sky/sunset.png",
+    "night": "skyweaver:textures/sky/night.png",
+    "midnight": "skyweaver:textures/sky/midnight.png"
+  },
+  "sun": "skyweaver:textures/sky/sun.png",
+  "moon": "skyweaver:textures/sky/moon.png",
+  "sun_scale": 30.0,
+  "moon_scale": 20.0
+}
