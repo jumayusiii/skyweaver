@@ -1,15 +1,24 @@
-# Skyweaver 1.0.0
+# Skyweaver 1.1.0
 
 Clean, data-driven custom skies for **Minecraft 26.1** on **NeoForge 26.1.0.19-beta**.
 
+## What's new in 1.1.0
+
+- **Dedicated sunrise panorama.** Dawn no longer reuses the sunset artwork.
+- Dawn now crossfades **night → sunrise → day**, centred on the game's `0.75` sunrise point.
+- The 4K pack includes a new 4096 × 2048 sunrise with a deep blue zenith, peach horizon and warm lit clouds.
+- A matching 1024 px sunrise is bundled in the mod jar for use without the 4K pack.
+- The `sunrise` texture is optional in skybox definitions. Older four-phase packs remain valid and fall back to `sunset` at dawn.
+- README, pack metadata and the procedural generator were updated for the five-phase cycle.
+
 ## What's in this release
 
-- `skyweaver-1.0.0.jar` — client-side NeoForge mod.
-- `Skyweaver-4K-Skies.zip` — 4K resource pack with clean day, sunset, night and midnight panoramas.
+- `skyweaver-1.1.0.jar` — client-side NeoForge mod.
+- `Skyweaver-4K-Skies.zip` — 4K resource pack with day, sunrise, sunset, night and midnight panoramas.
 
 ## Features
 
-- Four 4096 × 2048 equirectangular skies with smooth time-of-day crossfades.
+- Five 4096 × 2048 equirectangular skies with smooth time-of-day crossfades.
 - Moving sun and moon discs.
 - No horizon overlay or mountain ring: the skyline is clean and unobstructed.
 - Resource-pack JSON format for custom skyboxes, dimensions and optional celestial sprites.
@@ -21,7 +30,7 @@ Clean, data-driven custom skies for **Minecraft 26.1** on **NeoForge 26.1.0.19-b
 ## Install
 
 1. Install NeoForge 26.1.0.19-beta for Minecraft 26.1 (Java 25).
-2. Put `skyweaver-1.0.0.jar` in `mods/`.
+2. Put `skyweaver-1.1.0.jar` in `mods/`.
 3. Put `Skyweaver-4K-Skies.zip` in `resourcepacks/` and enable it in Options → Resource Packs.
 4. Launch the world.
 

@@ -57,6 +57,19 @@ public final class SkyTextureGen {
             0.96f, 0.35f, false, false, 1.0f
     );
 
+    static final Palette SUNRISE = new Palette(
+            "sunrise",
+            new float[]{0.075f, 0.16f, 0.44f},
+            new float[]{1.00f, 0.64f, 0.44f},
+            new float[]{0.45f, 0.33f, 0.52f},
+            new float[]{1.00f, 0.80f, 0.54f},
+            0.42f, 1.15f, (float) Math.toRadians(-1.0),
+            0.40f, 2.6f,
+            new float[]{1.00f, 0.83f, 0.68f},
+            new float[]{0.25f, 0.23f, 0.38f},
+            0.92f, 0.65f, false, false, 1.02f
+    );
+
     static final Palette SUNSET = new Palette(
             "sunset",
             new float[]{0.055f, 0.11f, 0.30f},
@@ -508,7 +521,7 @@ public final class SkyTextureGen {
         if (fallback) {
             File dir = new File("src/main/resources/assets/skyweaver/textures/sky");
             int W = 1024, H = 512;
-            for (Palette p : new Palette[]{DAY, SUNSET, NIGHT, MIDNIGHT}) {
+            for (Palette p : new Palette[]{DAY, SUNRISE, SUNSET, NIGHT, MIDNIGHT}) {
                 write(downscale(renderDome(p, W, H, 2), W, H), new File(dir, p.file() + ".png"));
             }
             write(renderSun(128), new File(dir, "sun.png"));
@@ -519,6 +532,7 @@ public final class SkyTextureGen {
 
         File dir = new File("resourcepack/assets/skyweaver/textures/sky");
         BufferedImage day = renderDome(DAY, 4096, 2048, 2);
+        BufferedImage sunrise = renderDome(SUNRISE, 4096, 2048, 2);
         BufferedImage sunset = renderDome(SUNSET, 4096, 2048, 2);
         BufferedImage night = renderDome(NIGHT, 4096, 2048, 2);
         BufferedImage midnight = renderDome(MIDNIGHT, 4096, 2048, 2);
@@ -526,6 +540,7 @@ public final class SkyTextureGen {
         BufferedImage moon = renderMoon(512);
 
         write(day, new File(dir, "day.png"));
+        write(sunrise, new File(dir, "sunrise.png"));
         write(sunset, new File(dir, "sunset.png"));
         write(night, new File(dir, "night.png"));
         write(midnight, new File(dir, "midnight.png"));
@@ -535,6 +550,7 @@ public final class SkyTextureGen {
         // Preview images and pack icon.
         File prev = new File("previews");
         write(downscale(day, 1920, 960), new File(prev, "day.png"));
+        write(downscale(sunrise, 1920, 960), new File(prev, "sunrise.png"));
         write(downscale(sunset, 1920, 960), new File(prev, "sunset.png"));
         write(downscale(night, 1920, 960), new File(prev, "night.png"));
         write(downscale(midnight, 1920, 960), new File(prev, "midnight.png"));

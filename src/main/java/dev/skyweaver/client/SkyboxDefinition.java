@@ -18,9 +18,10 @@ import org.jetbrains.annotations.Nullable;
  * {@code assets/<namespace>/skyboxes/<path>.json}.
  */
 public final class SkyboxDefinition {
-    /** The four time-of-day looks a skybox must provide. */
+    /** The time-of-day looks a skybox can provide. Sunrise is optional. */
     public enum Phase {
         DAY("day"),
+        SUNRISE("sunrise"),
         SUNSET("sunset"),
         NIGHT("night"),
         MIDNIGHT("midnight");
@@ -46,10 +47,10 @@ public final class SkyboxDefinition {
     }
 
     // The sun angle is 0 at noon, PI/2 at sunset, PI at midnight and 3PI/2 at sunrise.
-    private static final float[] KEY_TIMES = {0.00F, 0.20F, 0.25F, 0.33F, 0.44F, 0.56F, 0.67F, 0.75F, 0.83F, 1.00F};
+    private static final float[] KEY_TIMES = {0.00F, 0.20F, 0.25F, 0.33F, 0.44F, 0.56F, 0.67F, 0.73F, 0.77F, 0.85F, 1.00F};
     private static final Phase[] KEY_PHASES = {
             Phase.DAY, Phase.DAY, Phase.SUNSET, Phase.NIGHT, Phase.MIDNIGHT,
-            Phase.MIDNIGHT, Phase.NIGHT, Phase.SUNSET, Phase.DAY, Phase.DAY
+            Phase.MIDNIGHT, Phase.NIGHT, Phase.SUNRISE, Phase.SUNRISE, Phase.DAY, Phase.DAY
     };
 
     private final Map<Phase, Identifier> skies;
@@ -87,6 +88,10 @@ public final class SkyboxDefinition {
         for (Phase phase : Phase.values()) {
             Identifier texture = identifier(textures.get(phase.key()));
             if (texture == null) {
+                // Sunrise is optional so older four-phase skyboxes keep working.
+                if (phase == Phase.SUNRISE) {
+                    continue;
+                }
                 Skyweaver.LOGGER.warn("Skybox {} is missing the '{}' texture.", id, phase.key());
                 return null;
             }
@@ -125,7 +130,11 @@ public final class SkyboxDefinition {
     }
 
     public Identifier texture(Phase phase) {
-        return this.skies.get(phase);
+        Identifier texture = this.skies.get(phase);
+        if (texture == null && phase == Phase.SUNRISE) {
+            return this.skies.get(Phase.SUNSET);
+        }
+        return texture;
     }
 
     public Sample sample(float sunAngleRadians) {

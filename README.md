@@ -2,11 +2,13 @@
 
 Data-driven custom skies for **Minecraft 26.1** and **NeoForge 26.1.0.19-beta**.
 
-Skyweaver replaces the overworld sky with a resource-pack-defined skybox: four time-of-day
-panoramas (day, sunset, night, midnight) and moving sun and moon discs. The included
+Skyweaver replaces the overworld sky with a resource-pack-defined skybox: five time-of-day
+panoramas (day, sunrise, sunset, night, midnight) and moving sun and moon discs. The included
 **Skyweaver 4K Skies** pack adds realistic procedural 4K artwork with a clean, unobstructed horizon.
 
 ![Day sky](previews/small/day.png)
+
+![Sunrise sky](previews/small/sunrise.png)
 
 ## Download
 
@@ -35,7 +37,7 @@ panoramas (day, sunset, night, midnight) and moving sun and moon discs. The incl
 
 ## Installation
 
-1. Put `skyweaver-1.0.0.jar` in the instance's `mods/` folder.
+1. Put `skyweaver-1.1.0.jar` in the instance's `mods/` folder.
 2. Put `Skyweaver-4K-Skies.zip` in `resourcepacks/` and enable it in **Options → Resource Packs**.
    The pack must be above the mod's built-in resources, which is the normal resource-pack order.
 3. Launch the world. The pack is client-side only.
@@ -45,7 +47,7 @@ skies. The pack simply overrides those textures at higher resolution and costs n
 
 Outputs:
 
-- Mod: `build/libs/skyweaver-1.0.0.jar`
+- Mod: `build/libs/skyweaver-1.1.0.jar`
 - Pack folder: `resourcepack/`
 - Pack zip: `dist/Skyweaver-4K-Skies.zip`
 
@@ -57,7 +59,7 @@ installed in that test instance; compatibility with them is by construction, not
 
 | Texture | Resolution |
 | --- | --- |
-| `day.png` / `sunset.png` / `night.png` / `midnight.png` | 4096 × 2048 equirectangular |
+| `day.png` / `sunrise.png` / `sunset.png` / `night.png` / `midnight.png` | 4096 × 2048 equirectangular |
 | `sun.png` / `moon.png` | 512 × 512 RGBA |
 
 Everything is generated from periodic 3D value/gradient noise by
@@ -68,9 +70,8 @@ java tools/SkyTextureGen.java            # 4K pack + previews
 java tools/SkyTextureGen.java --fallback # 1024 px textures used inside the mod jar
 ```
 
-The 4K PNGs are intentionally compact (about 10 MB total) because they are smooth gradients rather
-than photographic noise. GPU memory is the real cost: roughly 130 MB of RGBA when all four skies
-are resident.
+The 4K PNGs are intentionally compact because they are smooth gradients rather than photographic
+noise. GPU memory is the real cost: roughly 168 MB of RGBA when all five skies are resident.
 
 ## Skybox pack format
 
@@ -82,6 +83,7 @@ A resource pack adds `assets/<namespace>/skyboxes/<path>.json` and references it
   "dimensions": ["minecraft:overworld"],
   "textures": {
     "day": "mypack:textures/sky/day.png",
+    "sunrise": "mypack:textures/sky/sunrise.png",
     "sunset": "mypack:textures/sky/sunset.png",
     "night": "mypack:textures/sky/night.png",
     "midnight": "mypack:textures/sky/midnight.png"
@@ -93,7 +95,9 @@ A resource pack adds `assets/<namespace>/skyboxes/<path>.json` and references it
 }
 ```
 
-- **textures** (required): four opaque equirectangular panoramas. Image top is the zenith.
+- **textures** (required): four opaque equirectangular panoramas plus an optional `sunrise`
+  panorama. Image top is the zenith. Four-phase packs without `sunrise` remain valid and reuse
+  `sunset` at dawn.
 - **dimensions** (optional): dimensions that use this sky. Defaults to `minecraft:overworld`.
   Only dimensions with a visible skybox can render it.
 - **sun / moon** (optional): RGBA discs. Omit either to skip that disc. They are positioned by the
@@ -104,7 +108,8 @@ A resource pack adds `assets/<namespace>/skyboxes/<path>.json` and references it
 
 Skyweaver drives the blend from the game's `sun_angle`, so it follows any dimension timeline:
 `0` is noon, `0.25` sunset, `0.5` midnight, `0.75` sunrise. Adjacent phases crossfade smoothly,
-with sunset reused for sunrise. The horizon stays clean and unobstructed throughout the cycle.
+using the dedicated sunrise panorama from `0.67` through `0.85`. The horizon stays clean and
+unobstructed throughout the cycle.
 
 Any number of skyboxes can live in a pack; select the active one with the `skybox` config option.
 For example a snow or alien dimension can ship its own definition without touching the mod.
