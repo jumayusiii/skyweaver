@@ -10,6 +10,8 @@ panoramas (day, sunrise, sunset, night, midnight) and moving sun and moon discs.
 
 ![Sunrise sky](previews/small/sunrise.png)
 
+![Sunrise in game](previews/small/ingame-sunrise.jpg)
+
 ## Download
 
 - [Latest GitHub release](https://github.com/jumayusiii/skyweaver/releases/latest)
@@ -37,7 +39,7 @@ panoramas (day, sunrise, sunset, night, midnight) and moving sun and moon discs.
 
 ## Installation
 
-1. Put `skyweaver-1.1.0.jar` in the instance's `mods/` folder.
+1. Put `skyweaver-1.1.1.jar` in the instance's `mods/` folder.
 2. Put `Skyweaver-4K-Skies.zip` in `resourcepacks/` and enable it in **Options → Resource Packs**.
    The pack must be above the mod's built-in resources, which is the normal resource-pack order.
 3. Launch the world. The pack is client-side only.
@@ -47,19 +49,19 @@ skies. The pack simply overrides those textures at higher resolution and costs n
 
 Outputs:
 
-- Mod: `build/libs/skyweaver-1.1.0.jar`
+- Mod: `build/libs/skyweaver-1.1.1.jar`
 - Pack folder: `resourcepack/`
 - Pack zip: `dist/Skyweaver-4K-Skies.zip`
 
-Smoke-tested on NeoForge 26.1.0.19-beta: the mod loads, the pack is accepted as resource
-format 84, and the sky renders in a superflat test world. Sodium, Lithium and Iris were not
+Tested on NeoForge 26.1.0.19-beta: the mod loads, the pack is accepted as resource
+format 84, and the sky renders in a 26.1 client at dawn. Sodium, Lithium and Iris were not
 installed in that test instance; compatibility with them is by construction, not by patching.
 
 ## The Skyweaver 4K Skies pack
 
 | Texture | Resolution |
 | --- | --- |
-| `day.png` / `sunrise.png` / `sunset.png` / `night.png` / `midnight.png` | 4096 × 2048 equirectangular |
+| `day.png` / `sunrise.png` / `sunset.png` / `night.png` / `midnight.png` | 4096 × 2048 zenith-to-horizon |
 | `sun.png` / `moon.png` | 512 × 512 RGBA |
 
 Everything is generated from periodic 3D value/gradient noise by
@@ -95,9 +97,9 @@ A resource pack adds `assets/<namespace>/skyboxes/<path>.json` and references it
 }
 ```
 
-- **textures** (required): four opaque equirectangular panoramas plus an optional `sunrise`
-  panorama. Image top is the zenith. Four-phase packs without `sunrise` remain valid and reuse
-  `sunset` at dawn.
+- **textures** (required): four opaque zenith-to-horizon panoramas plus an optional `sunrise`
+  panorama. Image top is the zenith and the bottom edge is the horizon. Four-phase packs without
+  `sunrise` remain valid and reuse `sunset` at dawn.
 - **dimensions** (optional): dimensions that use this sky. Defaults to `minecraft:overworld`.
   Only dimensions with a visible skybox can render it.
 - **sun / moon** (optional): RGBA discs. Omit either to skip that disc. They are positioned by the

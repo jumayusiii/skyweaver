@@ -15,7 +15,7 @@ import java.util.OptionalDouble;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Static geometry for the sky: an equirectangular dome and a unit celestial quad.
+ * Static geometry for the sky: a zenith-to-horizon dome and a unit celestial quad.
  */
 final class SkyMeshes {
     private static final int DOME_LONGITUDES = 192;
@@ -89,10 +89,12 @@ final class SkyMeshes {
             BufferBuilder builder = new BufferBuilder(byteBuffer, VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
 
             for (int latitude = 0; latitude < DOME_LATITUDES; latitude++) {
+                // The panorama covers the visible sky only: v = 0 is the zenith and v = 1 is the
+                // horizon. Mapping it over a full sphere would put the painted horizon underground.
                 float v0 = (float) latitude / DOME_LATITUDES;
                 float v1 = (float) (latitude + 1) / DOME_LATITUDES;
-                double theta0 = (0.5 - v0) * Math.PI;
-                double theta1 = (0.5 - v1) * Math.PI;
+                double theta0 = (1.0 - v0) * (Math.PI * 0.5);
+                double theta1 = (1.0 - v1) * (Math.PI * 0.5);
                 double y0 = Math.sin(theta0) * DOME_RADIUS;
                 double y1 = Math.sin(theta1) * DOME_RADIUS;
                 double r0 = Math.cos(theta0) * DOME_RADIUS;
