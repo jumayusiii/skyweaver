@@ -10,7 +10,7 @@ authors = "Skyweaver"
 description = '''
 Data-driven, resource-pack custom skyboxes for Minecraft 26.1.
 Use the included Skyweaver 4K Skies pack for clean, realistic
-day, sunset, night and midnight skies.
+day, noon, sunrise, sunset, night and midnight skies.
 '''
 logoFile = "skyweaver.png"
 

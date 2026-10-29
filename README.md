@@ -2,19 +2,36 @@
 
 Data-driven custom skies for **Minecraft 26.1** and **NeoForge 26.1.0.19-beta**.
 
-Skyweaver replaces the overworld sky with a resource-pack-defined skybox: five time-of-day
-panoramas (day, sunrise, sunset, night, midnight) and moving sun and moon discs. The included
-**Skyweaver 4K Skies** pack adds realistic procedural 4K artwork with a clean, unobstructed horizon.
+Skyweaver replaces the overworld sky with a resource-pack-defined skybox: six time-of-day
+panoramas (day, noon, sunrise, sunset, night, midnight) and moving sun and moon discs. The
+included **Skyweaver 4K Skies** pack adds realistic procedural 4K artwork with a clean,
+unobstructed horizon.
 
-![Day sky](previews/small/day.png)
-
-![Sunrise sky](previews/small/sunrise.png)
-
-![Sunrise in game](previews/small/ingame-sunrise.jpg)
+![The full day, noon, night and midnight cycle](previews/cycle.png)
 
 ## Download
 
 - [Latest GitHub release](https://github.com/jumayusiii/skyweaver/releases/latest)
+
+## The 24-hour circle
+
+Day, noon, night and midnight are the four headline looks. They form one continuous 24-hour
+circle, with sunrise and sunset bridging the light changes:
+
+| Normalized time | Sky |
+| --- | --- |
+| `0.00` | noon |
+| `0.16`–`0.22` | day |
+| `0.25` | sunset |
+| `0.33`–`0.44` | night |
+| `0.44`–`0.56` | midnight |
+| `0.56`–`0.67` | night |
+| `0.73`–`0.80` | sunrise |
+| `0.86`–`0.94` | day |
+| `1.00` | noon, wrapping seamlessly back to `0.00` |
+
+Every boundary is a smoothstep crossfade driven by the game's `sun_angle`, so the cycle follows
+the dimension's own timeline and never snaps. The horizon stays clean and unobstructed throughout.
 
 ## Why it is lightweight and compatible
 
@@ -39,7 +56,7 @@ panoramas (day, sunrise, sunset, night, midnight) and moving sun and moon discs.
 
 ## Installation
 
-1. Put `skyweaver-1.1.1.jar` in the instance's `mods/` folder.
+1. Put `skyweaver-1.2.0.jar` in the instance's `mods/` folder.
 2. Put `Skyweaver-4K-Skies.zip` in `resourcepacks/` and enable it in **Options → Resource Packs**.
    The pack must be above the mod's built-in resources, which is the normal resource-pack order.
 3. Launch the world. The pack is client-side only.
@@ -49,19 +66,27 @@ skies. The pack simply overrides those textures at higher resolution and costs n
 
 Outputs:
 
-- Mod: `build/libs/skyweaver-1.1.1.jar`
+- Mod: `build/libs/skyweaver-1.2.0.jar`
 - Pack folder: `resourcepack/`
 - Pack zip: `dist/Skyweaver-4K-Skies.zip`
 
-Tested on NeoForge 26.1.0.19-beta: the mod loads, the pack is accepted as resource
-format 84, and the sky renders in a 26.1 client at dawn. Sodium, Lithium and Iris were not
-installed in that test instance; compatibility with them is by construction, not by patching.
+## Compatibility tested
+
+The published 1.1.1 build was verified on a clean NeoForge 26.1.0.19-beta / Minecraft 26.1 client
+with Sodium **0.8.9+mc26.1.1**, Lithium **0.24.7+mc26.1.2**, Iris **1.10.9+mc26.1.1** and BSL
+Shaders **10.1.8**. All four loaded together with Skyweaver and the 4K pack; with shaders off
+Skyweaver rendered, and with BSL active Iris owned the sky and Skyweaver stepped aside.
+
+The 1.2.0 build was launched with the 4K pack at noon, day, sunset and midnight with no `ERROR`
+or `FATAL` entries. The 1.2.0 changes are new textures and a new optional noon texture key; they
+do not change the render pipeline. Iris 1.11.4 paired with Sodium 0.8.9 currently fails during
+Sodium mixin application with a missing `uniformBufferManager` field; use a matching pair.
 
 ## The Skyweaver 4K Skies pack
 
 | Texture | Resolution |
 | --- | --- |
-| `day.png` / `sunrise.png` / `sunset.png` / `night.png` / `midnight.png` | 4096 × 2048 zenith-to-horizon |
+| `day.png` / `noon.png` / `sunrise.png` / `sunset.png` / `night.png` / `midnight.png` | 4096 × 2048 zenith-to-horizon |
 | `sun.png` / `moon.png` | 512 × 512 RGBA |
 
 Everything is generated from periodic 3D value/gradient noise by
@@ -73,7 +98,7 @@ java tools/SkyTextureGen.java --fallback # 1024 px textures used inside the mod 
 ```
 
 The 4K PNGs are intentionally compact because they are smooth gradients rather than photographic
-noise. GPU memory is the real cost: roughly 168 MB of RGBA when all five skies are resident.
+noise. GPU memory is the real cost: roughly 192 MiB of RGBA when all six skies are resident.
 
 ## Skybox pack format
 
@@ -85,6 +110,7 @@ A resource pack adds `assets/<namespace>/skyboxes/<path>.json` and references it
   "dimensions": ["minecraft:overworld"],
   "textures": {
     "day": "mypack:textures/sky/day.png",
+    "noon": "mypack:textures/sky/noon.png",
     "sunrise": "mypack:textures/sky/sunrise.png",
     "sunset": "mypack:textures/sky/sunset.png",
     "night": "mypack:textures/sky/night.png",
@@ -97,21 +123,14 @@ A resource pack adds `assets/<namespace>/skyboxes/<path>.json` and references it
 }
 ```
 
-- **textures** (required): four opaque zenith-to-horizon panoramas plus an optional `sunrise`
-  panorama. Image top is the zenith and the bottom edge is the horizon. Four-phase packs without
-  `sunrise` remain valid and reuse `sunset` at dawn.
+- **textures** (required): four opaque zenith-to-horizon panoramas (`day`, `sunset`, `night`,
+  `midnight`) plus optional `noon` and `sunrise` panoramas. Image top is the zenith and the bottom
+  edge is the horizon. A pack without `noon` reuses `day`; a pack without `sunrise` reuses `sunset`.
 - **dimensions** (optional): dimensions that use this sky. Defaults to `minecraft:overworld`.
   Only dimensions with a visible skybox can render it.
 - **sun / moon** (optional): RGBA discs. Omit either to skip that disc. They are positioned by the
   game's sun/moon angles, including their normal day cycle.
 - **sun_scale / moon_scale** (optional): quad size, defaults 30 and 20.
-
-### Time blending
-
-Skyweaver drives the blend from the game's `sun_angle`, so it follows any dimension timeline:
-`0` is noon, `0.25` sunset, `0.5` midnight, `0.75` sunrise. Adjacent phases crossfade smoothly,
-using the dedicated sunrise panorama from `0.67` through `0.85`. The horizon stays clean and
-unobstructed throughout the cycle.
 
 Any number of skyboxes can live in a pack; select the active one with the `skybox` config option.
 For example a snow or alien dimension can ship its own definition without touching the mod.
@@ -145,9 +164,6 @@ the generator command above, then zipped from `resourcepack/` with `pack.mcmeta`
 - Moon phases use one full-moon texture; the pack does not ship eight phase variants.
 - Shader packs intentionally override Skyweaver while active. Disable the shader pack (or set
   `respect_shader_packs = false`) to compare.
-- Sodium, Lithium and Iris were not installed in the test instance. Compatibility is by
-  construction: official hooks, no mixins, no terrain access, and Iris detection instead of
-  patching their code.
 
 ## License
 

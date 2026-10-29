@@ -46,67 +46,80 @@ public final class SkyTextureGen {
 
     static final Palette DAY = new Palette(
             "day",
-            new float[]{0.065f, 0.22f, 0.62f},
-            new float[]{0.60f, 0.78f, 0.95f},
-            new float[]{0.56f, 0.74f, 0.93f},
-            new float[]{1.00f, 0.95f, 0.82f},
-            0.22f, 0.80f, (float) Math.toRadians(46.0),
-            0.50f, 1.0f,
+            new float[]{0.055f, 0.22f, 0.63f},
+            new float[]{0.66f, 0.82f, 0.97f},
+            new float[]{0.57f, 0.75f, 0.94f},
+            new float[]{1.00f, 0.97f, 0.88f},
+            0.18f, 0.48f, (float) Math.toRadians(38.0),
+            0.43f, 1.15f,
             new float[]{1.00f, 0.99f, 0.97f},
-            new float[]{0.52f, 0.59f, 0.71f},
-            0.96f, 0.35f, false, false, 1.0f
+            new float[]{0.42f, 0.51f, 0.66f},
+            0.94f, 0.35f, false, false, 1.0f
+    );
+
+    static final Palette NOON = new Palette(
+            "noon",
+            new float[]{0.035f, 0.20f, 0.68f},
+            new float[]{0.70f, 0.85f, 1.00f},
+            new float[]{0.63f, 0.81f, 1.00f},
+            new float[]{1.00f, 0.99f, 0.95f},
+            0.09f, 0.50f, (float) Math.toRadians(82.0),
+            0.35f, 0.90f,
+            new float[]{1.00f, 1.00f, 1.00f},
+            new float[]{0.48f, 0.59f, 0.74f},
+            0.90f, 0.30f, false, false, 1.03f
     );
 
     static final Palette SUNRISE = new Palette(
             "sunrise",
-            new float[]{0.075f, 0.16f, 0.44f},
-            new float[]{1.00f, 0.64f, 0.44f},
-            new float[]{0.45f, 0.33f, 0.52f},
-            new float[]{1.00f, 0.80f, 0.54f},
-            0.42f, 1.15f, (float) Math.toRadians(-1.0),
-            0.40f, 2.6f,
-            new float[]{1.00f, 0.83f, 0.68f},
-            new float[]{0.25f, 0.23f, 0.38f},
-            0.92f, 0.65f, false, false, 1.02f
+            new float[]{0.060f, 0.15f, 0.43f},
+            new float[]{1.00f, 0.68f, 0.48f},
+            new float[]{0.44f, 0.36f, 0.56f},
+            new float[]{1.00f, 0.82f, 0.58f},
+            0.35f, 1.00f, (float) Math.toRadians(-1.0),
+            0.29f, 1.7f,
+            new float[]{1.00f, 0.86f, 0.72f},
+            new float[]{0.24f, 0.22f, 0.38f},
+            0.90f, 0.75f, false, false, 1.02f
     );
 
     static final Palette SUNSET = new Palette(
             "sunset",
-            new float[]{0.055f, 0.11f, 0.30f},
-            new float[]{1.00f, 0.48f, 0.16f},
-            new float[]{0.20f, 0.19f, 0.36f},
-            new float[]{1.00f, 0.55f, 0.20f},
-            0.55f, 1.40f, (float) Math.toRadians(2.0),
-            0.46f, 2.1f,
-            new float[]{1.00f, 0.62f, 0.40f},
-            new float[]{0.26f, 0.19f, 0.30f},
-            0.94f, 0.85f, false, false, 1.0f
+            new float[]{0.045f, 0.09f, 0.28f},
+            new float[]{1.00f, 0.45f, 0.13f},
+            new float[]{0.19f, 0.17f, 0.34f},
+            new float[]{1.00f, 0.50f, 0.16f},
+            0.47f, 1.15f, (float) Math.toRadians(1.0),
+            0.35f, 1.5f,
+            new float[]{1.00f, 0.58f, 0.34f},
+            new float[]{0.24f, 0.16f, 0.28f},
+            0.92f, 0.90f, false, false, 1.0f
     );
 
     static final Palette NIGHT = new Palette(
             "night",
-            new float[]{0.008f, 0.020f, 0.060f},
-            new float[]{0.045f, 0.090f, 0.150f},
-            new float[]{0.030f, 0.060f, 0.115f},
+            new float[]{0.006f, 0.016f, 0.052f},
+            new float[]{0.050f, 0.090f, 0.160f},
+            new float[]{0.030f, 0.055f, 0.115f},
             new float[]{0.16f, 0.22f, 0.36f},
-            0.20f, 0.35f, (float) Math.toRadians(-14.0),
-            0.30f, 1.3f,
-            new float[]{0.10f, 0.13f, 0.21f},
-            new float[]{0.025f, 0.035f, 0.065f},
-            0.62f, 0.15f, true, false, 1.0f
+            0.12f, 0.00f, (float) Math.toRadians(-16.0),
+            0.32f, 1.4f,
+            new float[]{0.11f, 0.14f, 0.22f},
+            new float[]{0.020f, 0.030f, 0.060f},
+            0.58f, 0.18f, true, false, 1.0f
     );
 
     static final Palette MIDNIGHT = new Palette(
             "midnight",
-            new float[]{0.002f, 0.006f, 0.018f},
-            new float[]{0.012f, 0.026f, 0.055f},
-            new float[]{0.008f, 0.018f, 0.042f},
-            new float[]{0.05f, 0.07f, 0.14f},
-            0.06f, 0.10f, (float) Math.toRadians(-45.0),
-            0.24f, 1.5f,
-            new float[]{0.035f, 0.045f, 0.075f},
-            new float[]{0.008f, 0.012f, 0.026f},
-            0.45f, 0.05f, true, true, 1.0f
+            new float[]{0.001f, 0.003f, 0.012f},
+            new float[]{0.015f, 0.030f, 0.065f},
+            new float[]{0.008f, 0.018f, 0.045f},
+            new float[]{0.04f, 0.06f, 0.12f},
+            0.04f, 0.00f, (float) Math.toRadians(-50.0),
+            0.26f, 1.6f,
+            new float[]{0.040f, 0.055f, 0.090f},
+            new float[]{0.005f, 0.008f, 0.018f},
+            0.49f, 0.05f, true, true, 1.0f
     );
 
     // ---------------------------------------------------------------- noise
@@ -213,6 +226,7 @@ public final class SkyTextureGen {
     static final class CloudField {
         final int w, h;
         final float[] alpha, shade, density;
+        final float[] cirrusAlpha, cirrusShade;
 
         CloudField(int w, int h) {
             this.w = w;
@@ -220,6 +234,8 @@ public final class SkyTextureGen {
             alpha = new float[w * h];
             shade = new float[w * h];
             density = new float[w * h];
+            cirrusAlpha = new float[w * h];
+            cirrusShade = new float[w * h];
         }
 
         float sampleAlpha(float u, float v) {
@@ -228,6 +244,14 @@ public final class SkyTextureGen {
 
         float sampleShade(float u, float v) {
             return bilinear(shade, u, v);
+        }
+
+        float sampleCirrusAlpha(float u, float v) {
+            return bilinear(cirrusAlpha, u, v);
+        }
+
+        float sampleCirrusShade(float u, float v) {
+            return bilinear(cirrusShade, u, v);
         }
 
         private float bilinear(float[] data, float u, float v) {
@@ -264,36 +288,64 @@ public final class SkyTextureGen {
                 // rather than a flat deck). Mild perspective makes them a little
                 // larger overhead and smaller near the horizon.
                 float persp = 1.0f / (0.62f + 0.38f * sinT);
-                float sx = 2.5f * persp / p.stretch();
-                float sy = 4.2f * persp;
+                float sx = 2.2f * persp / p.stretch();
+                float sy = 5.8f * persp;
                 float px = dx * sx + 13.1f;
                 float py = dy * sy + 3.7f;
                 float pz = dz * sx - 7.3f;
 
                 float warp = n.fbm(px * 0.55f, py * 0.55f, pz * 0.55f, 2, 0.5f);
-                float base = n.fbm(px + warp * 0.75f, py - warp * 0.75f, pz + 0.4f, 5, 0.55f);
+                float base = n.fbm(px + warp * 1.10f, py - warp * 1.10f, pz + 0.4f, 5, 0.55f);
                 float billow = 1f - Math.abs(n.fbm(px * 1.7f, py * 1.7f, pz * 1.7f, 3, 0.5f));
                 float detail = n.fbm(px * 3.1f, py * 3.1f, pz * 3.1f, 2, 0.5f);
-                float d = 0.5f + base * 0.42f + (billow - 0.62f) * 0.22f + detail * 0.06f;
+                // A second, higher-frequency field erodes the silhouette so the
+                // cumulus edge is ragged rather than a smooth airbrushed blob.
+                float erosion = n.fbm(px * 4.6f + 7.7f, py * 4.6f, pz * 4.6f, 2, 0.5f);
+                float d = 0.5f + base * 0.42f + (billow - 0.62f) * 0.22f
+                        + detail * 0.06f + (erosion - 0.5f) * 0.10f;
                 float coverage = p.coverage();
-                float mask = smoothstep(coverage, coverage + 0.13f, d);
-                mask *= 0.55f + 0.45f * smoothstep(coverage + 0.02f, coverage + 0.28f, d);
+                float mask = smoothstep(coverage, coverage + 0.075f, d);
+                mask *= 0.50f + 0.50f * smoothstep(coverage + 0.02f, coverage + 0.26f, d);
                 // Break the deck up with a second, larger scale field so it reads as
                 // individual cloud streets instead of a uniform sheet.
                 float gap = n.fbm(px * 0.22f + 31f, py * 0.22f, pz * 0.22f, 2, 0.5f);
-                mask *= smoothstep(-0.22f, 0.04f, gap);
+                mask *= smoothstep(-0.24f, 0.02f, gap);
+                // And a medium-scale modulation so one huge mass does not swallow the sky.
+                float gap2 = n.fbm(px * 0.55f + 11f, py * 0.55f - 3f, pz * 0.55f + 5f, 2, 0.5f);
+                mask *= 0.72f + 0.28f * smoothstep(-0.38f, 0.08f, gap2);
+                // Broad clearings separate individual cloud groups instead of one column.
+                float region = n.fbm(px * 0.11f + 19f, py * 0.11f, pz * 0.11f, 2, 0.5f);
+                mask *= smoothstep(-0.52f, -0.04f, region);
                 mask *= horizonFade;
 
                 // Fake directional lighting: sample the field slightly towards the sun.
-                float shifted = n.fbm(px + warp * 0.75f + sd[0] * 0.30f,
-                        py - warp * 0.75f + sd[1] * 0.45f, pz + 0.4f + sd[2] * 0.30f, 4, 0.55f);
+                float shifted = n.fbm(px + warp * 1.10f + sd[0] * 0.30f,
+                        py - warp * 1.10f + sd[1] * 0.45f, pz + 0.4f + sd[2] * 0.30f, 4, 0.55f);
                 float delta = (base - shifted) * 2.8f;
-                float shade = clamp01(0.63f + delta);
+                float shade = clamp01(0.64f + delta + (detail - 0.5f) * 0.16f);
+                // Denser cloud cores sit in their own shadow.
+                shade = clamp01(shade - smoothstep(0.45f, 0.95f, d) * 0.12f);
+
+                // Thin, high cirrus adds a second cloud layer and breaks up
+                // the flat areas between the cumulus streets.
+                float csx = 1.15f * persp;
+                float csy = 7.0f * persp;
+                float cpx = dx * csx + 4.3f;
+                float cpy = dy * csy - 2.1f;
+                float cpz = dz * csx + 9.7f;
+                float ciBase = n.fbm(cpx, cpy, cpz, 4, 0.54f);
+                float ciWarp = n.fbm(cpx * 0.7f + 5.0f, cpy * 0.7f, cpz * 0.7f, 2, 0.5f);
+                float ciMask = smoothstep(0.54f, 0.70f, ciBase + ciWarp * 0.18f);
+                ciMask *= smoothstep(0.055f, 0.22f, sinT);
+                ciMask *= 0.12f + 0.18f * p.cloudOpacity();
+                float ciShade = clamp01(0.70f + (ciBase - 0.62f) * 1.8f + (detail - 0.5f) * 0.12f);
 
                 int idx = y * cw + x;
                 field.alpha[idx] = mask;
                 field.shade[idx] = shade;
                 field.density[idx] = clamp01(d);
+                field.cirrusAlpha[idx] = clamp01(ciMask);
+                field.cirrusShade[idx] = ciShade;
             }
         });
         return field;
@@ -306,6 +358,8 @@ public final class SkyTextureGen {
         CloudField clouds = buildClouds(p, cloudScale);
         float[] sd = sunDir(p);
         float sunEl = p.sunElevation();
+        float sunElDeg = (float) Math.toDegrees(sunEl);
+        float lowSun = smoothstep(-8.0f, 5.0f, sunElDeg) * (1.0f - smoothstep(12.0f, 30.0f, sunElDeg));
         Noise noise = new Noise(99L);
         float galaxyTilt = (float) Math.toRadians(32.0);
 
@@ -326,27 +380,51 @@ public final class SkyTextureGen {
                 float[] horizon = mix3(p.horizonCool(), p.horizon(), (float) Math.pow(az, 0.7f));
                 float lift = (float) Math.pow(clamp01(sinT), 0.42f);
                 float[] col = mix3(horizon, p.zenith(), lift);
-                // Subtle mid-sky band.
-                float mid = smoothstep(0.0f, 0.55f, sinT) * (1f - smoothstep(0.55f, 0.95f, sinT));
-                add(col, p.zenith(), mid * 0.06f);
+                // Subtle upper-atmosphere band keeps the zenith from looking flat.
+                add(col, p.zenith(), smoothstep(0.22f, 0.95f, sinT) * 0.04f);
 
                 // Sun/mie scattering.
                 float cosA = dx * sd[0] + dy * sd[1] + dz * sd[2];
                 // Broad atmospheric scattering only: the sun and moon are drawn by the mod, so the
                 // panorama must not bake in a second, stationary sun.
                 float broad = (float) Math.exp(-(1f - cosA) * 8.5f) * p.glowBroad();
-                float scatter = broad;
-                add(col, p.glow(), scatter * (0.85f + 0.15f * clamp01(-sunEl * 4f)));
+                add(col, p.glow(), broad * (0.85f + 0.15f * clamp01(-sunEl * 4f)));
+
+                // A tighter lobe gives low suns their hot core without painting a disc.
+                if (p.glowTight() > 0.0f) {
+                    float tight = (float) Math.exp(-(1f - cosA) * 70.0f) * p.glowTight();
+                    add(col, p.glow(), tight * 0.45f);
+                }
+
+                // Pinkish anti-solar belt just above the horizon at dawn and dusk.
+                float anti = 0.5f - 0.5f * cosP;
+                float belt = (float) Math.exp(-Math.pow((sinT - 0.11f) / 0.07f, 2.0)) * anti * lowSun;
+                add(col, new float[]{0.62f, 0.40f, 0.52f}, belt * 0.10f);
 
                 // Horizon haze / airglow.
                 float haze = (float) Math.exp(-sinT * 7.5f);
-                add(col, horizon, haze * 0.35f);
+                add(col, horizon, haze * 0.28f);
 
-                // Clouds.
+                // High-frequency detail at full output resolution: the cloud field
+                // is generated at half resolution, so this keeps the 4K sky crisp.
+                float edgeNoise = noise.fbm(dx * 14.0f + 3.1f, dy * 14.0f, dz * 14.0f, 2, 0.55f);
+                float fineNoise = noise.fbm(dx * 42.0f, dy * 42.0f, dz * 42.0f, 2, 0.50f);
+                float edge = (edgeNoise - 0.5f) * 0.12f + (fineNoise - 0.5f) * 0.05f;
+
+                // High cirrus first, then cumulus on top.
+                float ci = clouds.sampleCirrusAlpha(u, v);
+                if (ci > 0.002f) {
+                    float sh = clouds.sampleCirrusShade(u, v);
+                    float[] lit = mix3(p.cloudShadow(), p.cloudLit(), sh);
+                    col = mix3(col, lit, clamp01(ci));
+                }
+
                 float ca = clouds.sampleAlpha(u, v);
+                ca = clamp01(ca + edge * 4.0f * ca * (1.0f - ca));
                 float alpha = ca * p.cloudOpacity();
                 if (alpha > 0.002f) {
                     float sh = clouds.sampleShade(u, v);
+                    sh = clamp01(sh + (edgeNoise - 0.5f) * 0.12f + (fineNoise - 0.5f) * 0.06f);
                     float[] lit = mix3(p.cloudShadow(), p.cloudLit(), sh);
                     float rim = (float) Math.exp(-(1f - cosA) * 18f) * p.rim();
                     add(lit, p.glow(), rim * 0.55f);
@@ -355,24 +433,31 @@ public final class SkyTextureGen {
 
                 // Milky way band.
                 if (p.stars()) {
+                    float cloudCover = clamp01(alpha + ci * 0.65f);
                     float lat = dy * (float) Math.cos(galaxyTilt) - dz * (float) Math.sin(galaxyTilt) * 0.55f
                             - dx * (float) Math.sin(galaxyTilt) * 0.35f;
                     float band = (float) Math.exp(-(lat * lat) / (2f * 0.085f * 0.085f));
                     float mwNoise = 0.55f + 0.45f * noise.fbm(dx * 3.4f, dy * 3.4f, dz * 3.4f, 4, 0.55f);
                     float dust = smoothstep(0.12f, 0.62f, 0.5f + 0.5f * noise.fbm(dx * 8.5f, dy * 8.5f, dz * 8.5f, 3, 0.5f));
-                    float mw = band * mwNoise * (0.42f + 0.58f * dust) * (1f - alpha);
-                    add(col, new float[]{0.52f, 0.60f, 0.82f}, mw * 0.16f);
-                    add(col, new float[]{0.82f, 0.76f, 0.68f}, band * band * 0.05f);
+                    float mw = band * mwNoise * (0.42f + 0.58f * dust) * (1f - cloudCover);
+                    add(col, new float[]{0.52f, 0.60f, 0.82f}, mw * 0.18f);
+                    add(col, new float[]{0.82f, 0.76f, 0.68f}, band * band * 0.06f);
                 }
 
                 // Aurora curtains (midnight only).
                 if (p.aurora()) {
-                    float bandV = smoothstep(0.03f, 0.22f, sinT) * (1f - smoothstep(0.50f, 0.78f, sinT));
-                    float curtain = 0.5f + 0.5f * noise.fbm(cosP * 2.4f, sinP * 2.4f, sinT * 5.5f, 4, 0.55f);
-                    float ray = (float) Math.pow(0.5f + 0.5f * noise.noise(cosP * 21f, sinP * 21f, sinT * 2.2f), 3);
-                    float aur = bandV * (float) Math.pow(curtain, 2.2f) * ray * 0.20f;
-                    add(col, new float[]{0.20f, 0.95f, 0.62f}, aur);
-                    add(col, new float[]{0.35f, 0.45f, 1.00f}, aur * 0.35f);
+                    float bandV = smoothstep(0.06f, 0.20f, sinT) * (1f - smoothstep(0.42f, 0.72f, sinT));
+                    float curtainA = 0.5f + 0.5f * noise.fbm(cosP * 1.9f, sinP * 1.9f, sinT * 6.5f, 4, 0.55f);
+                    float curtainB = 0.5f + 0.5f * noise.fbm(cosP * 4.3f + 8.0f, sinP * 4.3f, sinT * 9.0f, 3, 0.50f);
+                    float fold = curtainA * 2.4f + curtainB * 1.2f;
+                    float rays = 0.5f + 0.5f * noise.noise(cosP * 18.0f + fold, sinP * 18.0f - fold,
+                            sinT * 2.0f + fold * 0.5f);
+                    rays = (float) Math.pow(rays, 2.0);
+                    float curtain = (float) Math.pow(curtainA, 2.0) * 0.65f + (float) Math.pow(curtainB, 2.8) * 0.35f;
+                    float aur = bandV * curtain * (0.35f + 0.65f * rays) * 0.40f;
+                    add(col, new float[]{0.18f, 0.95f, 0.58f}, aur);
+                    add(col, new float[]{0.28f, 0.45f, 1.00f}, aur * 0.38f);
+                    add(col, new float[]{0.62f, 0.25f, 0.75f}, aur * 0.12f);
                 }
 
                 // Gentle exposure curve so the horizon never clips harshly.
@@ -384,7 +469,7 @@ public final class SkyTextureGen {
         });
 
         if (p.stars()) {
-            splatStars(px, W, H, clouds, new Random(4242L), H > 1500 ? 24000 : 5200);
+            splatStars(px, W, H, clouds, new Random(4242L), H > 1500 ? 30000 : 5000);
         }
         return toImage(px, W, H);
     }
@@ -399,14 +484,15 @@ public final class SkyTextureGen {
             int x = (int) (u * W) % W;
             int y = (int) (v * H);
             if (y < 0 || y >= H) continue;
-            float occl = 1f - clouds.sampleAlpha(u, v) * 0.95f;
+            float occl = 1f - Math.max(clouds.sampleAlpha(u, v) * 0.95f,
+                    clouds.sampleCirrusAlpha(u, v) * 0.60f);
             if (occl < 0.05f) continue;
 
             float bright = (float) Math.pow(rnd.nextDouble(), 4.2) * 1.15f + 0.02f;
             float warm = rnd.nextFloat();
             float[] tint = mix3(new float[]{0.72f, 0.82f, 1.0f}, new float[]{1.0f, 0.88f, 0.70f}, warm * warm);
-            float radius = 0.45f + bright * 0.85f;
-            float energy = bright * 0.75f * occl;
+            float radius = 0.45f + bright * 0.95f;
+            float energy = bright * 0.72f * occl;
             int r = (int) Math.ceil(radius * 2.2f);
             for (int oy = -r; oy <= r; oy++) {
                 int yy = y + oy;
@@ -513,6 +599,25 @@ public final class SkyTextureGen {
         return downscale(sub, out, out);
     }
 
+    /** 2x2 contact sheet used by the README and the release notes. */
+    static BufferedImage cycleSheet(BufferedImage day, BufferedImage noon, BufferedImage night,
+                                    BufferedImage midnight, int w, int h) {
+        BufferedImage out = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+        Graphics2D g = out.createGraphics();
+        g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        int halfW = w / 2, halfH = h / 2;
+        g.drawImage(day, 0, 0, halfW, halfH, null);
+        g.drawImage(noon, halfW, 0, halfW, halfH, null);
+        g.drawImage(night, 0, halfH, halfW, halfH, null);
+        g.drawImage(midnight, halfW, halfH, halfW, halfH, null);
+        g.setColor(new java.awt.Color(255, 255, 255, 50));
+        g.fillRect(halfW - 1, 0, 2, h);
+        g.fillRect(0, halfH - 1, w, 2);
+        g.dispose();
+        return out;
+    }
+
     public static void main(String[] args) throws Exception {
         boolean fallback = args.length > 0 && args[0].equals("--fallback");
         ImageIO.setUseCache(false);
@@ -521,7 +626,7 @@ public final class SkyTextureGen {
         if (fallback) {
             File dir = new File("src/main/resources/assets/skyweaver/textures/sky");
             int W = 1024, H = 512;
-            for (Palette p : new Palette[]{DAY, SUNRISE, SUNSET, NIGHT, MIDNIGHT}) {
+            for (Palette p : new Palette[]{DAY, NOON, SUNRISE, SUNSET, NIGHT, MIDNIGHT}) {
                 write(downscale(renderDome(p, W, H, 2), W, H), new File(dir, p.file() + ".png"));
             }
             write(renderSun(128), new File(dir, "sun.png"));
@@ -532,6 +637,7 @@ public final class SkyTextureGen {
 
         File dir = new File("resourcepack/assets/skyweaver/textures/sky");
         BufferedImage day = renderDome(DAY, 4096, 2048, 2);
+        BufferedImage noon = renderDome(NOON, 4096, 2048, 2);
         BufferedImage sunrise = renderDome(SUNRISE, 4096, 2048, 2);
         BufferedImage sunset = renderDome(SUNSET, 4096, 2048, 2);
         BufferedImage night = renderDome(NIGHT, 4096, 2048, 2);
@@ -540,6 +646,7 @@ public final class SkyTextureGen {
         BufferedImage moon = renderMoon(512);
 
         write(day, new File(dir, "day.png"));
+        write(noon, new File(dir, "noon.png"));
         write(sunrise, new File(dir, "sunrise.png"));
         write(sunset, new File(dir, "sunset.png"));
         write(night, new File(dir, "night.png"));
@@ -549,12 +656,21 @@ public final class SkyTextureGen {
 
         // Preview images and pack icon.
         File prev = new File("previews");
+        File small = new File(prev, "small");
         write(downscale(day, 1920, 960), new File(prev, "day.png"));
+        write(downscale(noon, 1920, 960), new File(prev, "noon.png"));
         write(downscale(sunrise, 1920, 960), new File(prev, "sunrise.png"));
         write(downscale(sunset, 1920, 960), new File(prev, "sunset.png"));
         write(downscale(night, 1920, 960), new File(prev, "night.png"));
         write(downscale(midnight, 1920, 960), new File(prev, "midnight.png"));
-        write(crop(day, 1500, 760, 1200, 1200, 256), new File("resourcepack/pack.png"));
+        write(downscale(day, 960, 480), new File(small, "day.png"));
+        write(downscale(noon, 960, 480), new File(small, "noon.png"));
+        write(downscale(sunrise, 960, 480), new File(small, "sunrise.png"));
+        write(downscale(sunset, 960, 480), new File(small, "sunset.png"));
+        write(downscale(night, 960, 480), new File(small, "night.png"));
+        write(downscale(midnight, 960, 480), new File(small, "midnight.png"));
+        write(cycleSheet(day, noon, night, midnight, 1920, 960), new File(prev, "cycle.png"));
+        write(crop(noon, 1500, 760, 1200, 1200, 256), new File("resourcepack/pack.png"));
 
         System.out.println("done in " + (System.currentTimeMillis() - start) / 1000.0 + "s");
     }

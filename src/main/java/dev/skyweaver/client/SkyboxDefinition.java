@@ -18,9 +18,10 @@ import org.jetbrains.annotations.Nullable;
  * {@code assets/<namespace>/skyboxes/<path>.json}.
  */
 public final class SkyboxDefinition {
-    /** The time-of-day looks a skybox can provide. Sunrise is optional. */
+    /** The time-of-day looks a skybox can provide. Noon and sunrise are optional. */
     public enum Phase {
         DAY("day"),
+        NOON("noon"),
         SUNRISE("sunrise"),
         SUNSET("sunset"),
         NIGHT("night"),
@@ -47,10 +48,14 @@ public final class SkyboxDefinition {
     }
 
     // The sun angle is 0 at noon, PI/2 at sunset, PI at midnight and 3PI/2 at sunrise.
-    private static final float[] KEY_TIMES = {0.00F, 0.20F, 0.25F, 0.33F, 0.44F, 0.56F, 0.67F, 0.73F, 0.77F, 0.85F, 1.00F};
+    // The final key repeats noon so the timeline wraps without a seam at 1.0 -> 0.0.
+    private static final float[] KEY_TIMES = {
+            0.00F, 0.08F, 0.16F, 0.22F, 0.25F, 0.33F, 0.44F,
+            0.56F, 0.67F, 0.73F, 0.80F, 0.86F, 0.94F, 1.00F
+    };
     private static final Phase[] KEY_PHASES = {
-            Phase.DAY, Phase.DAY, Phase.SUNSET, Phase.NIGHT, Phase.MIDNIGHT,
-            Phase.MIDNIGHT, Phase.NIGHT, Phase.SUNRISE, Phase.SUNRISE, Phase.DAY, Phase.DAY
+            Phase.NOON, Phase.NOON, Phase.DAY, Phase.DAY, Phase.SUNSET, Phase.NIGHT, Phase.MIDNIGHT,
+            Phase.MIDNIGHT, Phase.NIGHT, Phase.SUNRISE, Phase.SUNRISE, Phase.DAY, Phase.DAY, Phase.NOON
     };
 
     private final Map<Phase, Identifier> skies;
@@ -88,8 +93,8 @@ public final class SkyboxDefinition {
         for (Phase phase : Phase.values()) {
             Identifier texture = identifier(textures.get(phase.key()));
             if (texture == null) {
-                // Sunrise is optional so older four-phase skyboxes keep working.
-                if (phase == Phase.SUNRISE) {
+                // Noon and sunrise are optional so older packs keep working.
+                if (phase == Phase.NOON || phase == Phase.SUNRISE) {
                     continue;
                 }
                 Skyweaver.LOGGER.warn("Skybox {} is missing the '{}' texture.", id, phase.key());
@@ -131,8 +136,13 @@ public final class SkyboxDefinition {
 
     public Identifier texture(Phase phase) {
         Identifier texture = this.skies.get(phase);
-        if (texture == null && phase == Phase.SUNRISE) {
-            return this.skies.get(Phase.SUNSET);
+        if (texture == null) {
+            if (phase == Phase.NOON) {
+                return this.skies.get(Phase.DAY);
+            }
+            if (phase == Phase.SUNRISE) {
+                return this.skies.get(Phase.SUNSET);
+            }
         }
         return texture;
     }
